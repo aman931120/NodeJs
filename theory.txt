@@ -1,0 +1,531 @@
+⭐ What is NodeJs ?
+=> Intially, JS was used in Frontend only, to enhance UI and interaction on Website(i.e. Button, dynamic color, popup)
+=> But NodeJs
+    > Open Source
+    > Server Side
+    > Javascript 
+    > Runtime Envirement
+        :-> that allow to Run Js code in server 
+=> NodeJs allow developers to Use same language in frontend and backend. 
+    > Client Side
+    > Sever Side
+
+
+⭐ NodeJs is built on top of 
+    "Chrome v8 Javascript Engine"
+    > which is know for high performance and Efficient Execution of JS code.
+
+⭐ V8 Engine
+    > open Source
+    > Javascript Engine
+    > develped by Google to use in google chrome web browser
+    > It Basically converts Human Readabel JS code to Machine Readable language
+
+
+⭐ Client Side and Server Side
+=> Client Side : Frontend
+    > Code that runs on the user's browser (frontend).
+    >Technologies Used: HTML, CSS, JavaScript, React, Angular, Vue.js, etc.
+=> Server-Side
+    > Code that runs on the server (backend).
+    > Handles database operations (CRUD - Create, Read, Update, Delete).
+
+⭐ TOOLS :
+    > NodeJs
+    > NPM 
+    > Vs code
+    > Postman
+
+⭐ How to run JavaScript File ?
+    > node fileName.js
+
+⭐ How to take input in JavaScript
+    > Using prompt [install: npm i prompt-sync]
+    > const age = prompt("Please enter your age: ");
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+<-- Lecture 2 -->
+🔱 npm init : this is basically start of our project .
+
+
+⭐ NPM
+NPM (Node Package Manager) is the default package manager for Node.js. It is used to manage JavaScript packages
+
+
+🔱 "npm i express" : Used to install the Express.js framework in a Node.js project. 
+
+
+⭐ Difference Between Package.json and Package-lock.json
+    => Package.json
+        📌 Think of it like a Shopping List 🛒
+        -> Contains the list of dependencies needed for the project.
+        -> Does not lock specific versions (by default, it allows updates).
+
+    => package-lock.json
+        📌 Think of it like a Bill Receipt 🧾
+        -> Stores the exact versions of installed packages.
+        -> Ensures everyone gets the same version when running npm install.
+
+Both file work together to ensure the smooth development for you and your team.
+
+
+
+🔱 Nodemon : "npm i nodemon"
+    > It constantly run the server 
+    > "npx nodemon server.js" , with help of this command sever will start
+
+
+⭐ Ways to write the function 
+    function add(a,b){
+        return a+b;
+    }
+
+    var add = function (a, b) {
+        return a + b;
+    };
+
+    var add = (a,b) => {
+        return a+b;
+    }
+
+⭐ Function that will run by itself
+    (function(a,b){
+        console.log("Aman is Added");
+    })();
+
+
+⭐ Callback function
+    > It is like a function calling different function 
+    > When we are calling a function inside another function then we call it callback function
+
+
+⭐ Example of Callback function 
+    const add = function(a,b,prince){
+        var result = a+b;
+        console.log("Result : "+result);
+        prince(); 
+    }
+
+    add(2,3,function(){
+        console.log("Add completed");
+    })
+
+    add(3,5,() => console.log("Add competed"));
+
+
+⭐ Core modules of NodeJs
+    > There are many built-in modules in Nodejs that we can use 
+    1️⃣ Learn about the 'fs' modules
+        -> It creates a file and writes the message inside
+    2️⃣ Learn about the 'os' modules
+        -> With the help of this package we can collect details of user/system
+        -> Learn os.userinfo()
+        -> Log username
+
+    const { log } = require("console");
+    var fs = require("fs");
+    var os = require("os");
+
+    var user = os.userInfo();
+    console.log(user.username);
+
+    fs.appendFile("greeting.txt", "Hi " + user.username + " !\n", () => {
+        console.log("File is created");
+    });
+
+
+⭐ How to export from a file
+    -> notes.js File
+        var age = 23
+        
+        const addNumber = function(a,b){
+            return a+b;
+        }
+        module.exports = {
+            age,
+            addNumber
+        }
+
+    -> sever.js file 
+        var age = notes.age;
+        console.log(age);
+
+        var result = notes.addNumber(2,3)
+        console.log(result);
+
+
+🔱 "npm i lodash"
+    -> Array Manipulation
+    -> Object Manipulation
+    -> String Manipulation
+    -> Performance Optimization
+
+    var _ = require('lodash')
+    var data = ["person","person",1,2,1,2,'name','age','2'];
+    var filter = _.uniq(data);
+    console.log(filter);
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+<--Lecture 3-->
+
+⭐ Sever in NodeJs
+    -> A sever is a Person who communicate with clients
+    -> A server is a computer program that is responsible for preparing and delivering data to other computers [Data : web page, videos, or any additional information]
+
+⭐ JSON : JavaScript Ojbet Notation
+    -> JSON is a "String"
+    -> Imagine you are sending a message to your friend and you want to include information like your name, age, and list of your favourite hobbies.
+    -> You need to organize the information in a way that both you and your friend understand
+    -> JSON is a bit like this organized format for exchanging data between computers.
+
+    -> JSON is a lightweight
+    -> Structured and organized Data because in most context JSON in represented as a string
+
+    {
+        "name":"Alice",
+        "age: 25,
+        "hobbies":["reading","painting","hiking"]
+    }
+
+
+⭐ Conversion JSON to a Object in Nodejs
+    const jsonString = ``;
+    const jsonObject = JSON.parse(jsonString)   
+    console.log(jsonObject.name)
+
+⭐ Conversion Object to JSON in Nodejs
+    const jsonObject = ________
+    const jsonString = JSON.stringify(jsonObject)
+    console.log(jsonString)
+
+⭐ What are API and Endpoints ?
+    -> API allows different software systems to talk to each other by sending requests and receiving responses.
+    -> An endpoint is like a specific address or URL where the API can be accessed.
+
+
+⭐ Create a Server
+    -> Creating a sever in NodeJs via express package
+    ->Expressjs is a popular framework for building web applications and APIs using Nodejs
+    -> When you create an ExpressJs application you are setting up the foundation for handling incoming requests and defining how your application responds to them.
+
+
+⭐ Methods to share data
+    -> Now, in the world of web Development, we need to deal with the data 
+    -> How data is sent and received between a client (like a web browser) and a server(built with Nodejs)
+
+    -> So there are lots of methods out there to send or receive data according to their needs
+
+    1️⃣ GET 
+    2️⃣ POST 
+    3️⃣ PATCH
+    4️⃣ DELETE 
+
+⭐ Get 
+    -> Imagine you want to read a book on a library shelf. You donot change anything you just want to get the information 
+    -> Similarly the GET method is used to request data from server
+
+    -> For example, when you enter a website URL in your browser your browser sends a GET request to the server to fetch the web page
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+<-- Lecture 4 --> DATABASES
+
+⭐ Web Development : client + server + database
+
+⭐ Types of database:
+    1. SQL 
+    2. PostgreSQL
+    3. MongoDB
+    4. MariaDB
+    5. Oracle
+
+⭐ Note:
+    -> databases typically have their own server system to manage and provide access to the data they Stores
+    -> These databases server system are separate from Nodejs server but work together to create dynamic and data-driven web application. 
+
+
+⭐ NodeJs Sever and Database Server
+    -> A database sever is a specialized computer program or system that manages databases. It stores, retrieves, and manages data Efficiently.
+    -> The database server stores your application data. When your Node.js server need data, it sends requests to the database server, which then retrieves and sends the requested data back to Node.js Sever.
+
+
+⭐ Nodejs server is responsible for handling HTTP request from clients(like web browser) and returning responses.
+⭐ It processes these requests, communicate with the database server, and sends data to clients.
+
+
+🔱 "monogosh" 
+This is a command to activate mongoDb in my command line
+
+
+⭐ MongoDB Syntax and Queries
+Now as we know there is 2 thing
+    -> Start MongoDB server
+    -> now we can use MongoDB shell from where we can interact with database
+
+⭐ SQL and MongoDB
+    -> SQL Databases: Store data in a structured, tabular format using rows and columns (e.g., MySQL, PostgreSQL).
+    -> MongoDB: Stores data in JSON-like documents (BSON format), making it more flexible.
+
+
+⭐ Commands for MongoDB
+    # Show all databases
+    show dbs
+
+    # Use a specific database (creates if not exists)
+    use myDatabase
+
+    # Show the current database
+    db
+
+    # Drop (delete) the current database
+    db.dropDatabase()
+
+    # Show all collections in the database
+    show collections
+
+    # Create a new collection
+    db.createCollection("users")
+
+    # Drop (delete) a collection
+    db.users.drop()
+
+
+⭐ Insert Data
+    # Insert a single document
+    db.users.insertOne({ name: 'Aman', age: 22 })
+
+    # Insert multiple documents
+    db.users.insertMany([
+    { name: "John", age: 25 },
+    { name: "Doe", age: 30 }
+    ])
+
+
+🔱 "db.user.find()"
+It will show collection of all the json object in that particular collection that is "user"
+
+🔱 db.user.find({age : { $gt : 21}})
+This above command will print the user that will have age greater than 21.
+
+🔱 db.user.find({age : { $lt : 23}})
+This above command will print the user that will have age less than 23
+
+🔱 db.user.updateOne({username: 'Alice'}, { $set : { age: 22}})
+This will update the data in mongoDb table
+
+🔱 db.user.deleteOne({id: 1});
+This will delete document where id is 1
+
+
+⭐ Data Design and Postman
+    -> Now in order to use the database we have to integrate MongoDB with Nodejs.
+
+
+⭐ Connect MonogDB with NodeJs
+    -> Now to connect with MongoDB we need a MongoDB driver ( a set of programs)
+    -> A MongoDB driver is essential when connecting Node.js with MongoDB because it """act like a bridge between your Node.js application and the MongoDB database."""
+    -> The driver translates the JavaScript code from NodeJs into a format that MongoDB can understand and vice versa.
+
+    -> The driver provide a set of function and methods that make it easier to perform common database operations from your Nodejs code.
+
+🔱 "npm install mongodb" 
+It is basically a MonogDB Driver
+
+ 
+⭐ Mongoose
+We will use this rather than mongodb
+    -> Mongoose is a Objct Data Modelling (ODM) library for MongoDB and Nodejs
+    -> There are lot of reasons we prefer Mongoose rather than a native official driver.
+    -> Mongoose is like a translator between your NojeJs code and MongoDB. It make working with the database smoother and easier.
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+<-- Lecture 5 -->
+⭐ Database connection
+1️⃣ Create a file db.js in root folder
+2️⃣ The db.js file you have created is essentially responsible for establishing a connection between your Node.js application and your MongoDB database uisng Mongoose library.
+
+
+⭐ "npm i mongoose"
+From this command we will install mongoose in our system and in db.js file import this mongoose 
+    const mongoose = require('mongoose');
+
+⭐ Connection Step by Step
+1. Import Mongoose and define the MongoDB URL: in the db.js file, you first import the Mongoose library and define the URL to your MonogDB database. This URL typically follow the format "mongodb://<hostname>:<port>/<databaseName>" in your code , you've set the URL to "mongodb://localhost:27017/mydatabase" where mydatabase is the name of MongoDB database. 
+
+2. Set Up the MongoDB Connection: Next, you call mongoose.connect() to establish a connection to the MongoDB database using the URL  and some configuration options (useNewURLParser, useUnifiedTopology, etc.) The step intializes the connection process but does not actually connect at this point. 
+
+3. Access the default connection Object : Mongoose maintains a default connection object representing the MongoDB Connection. You retrieve this object using mongoose.connection and your have stored it in the variable db . This Object is what you'll use to handle events and interact with the database.
+
+4. Define Event Listeners: You define events Listeners for the database .on('error', ...), and .on('disconnected',...). These events Listeners allow you to react with different states of database connection. 
+
+5. Start Listening for Events: The code is set up to listen for events. When you call mongoose.connect(), Mongoose starts the connection process. If the connection is successfull, the 'connected' event is triggered and you log a message indicating the you are connected to MonogDB . If there is an error during the connection process the 'error' event is triggered, and you log an error message. Similarly, the 'disconnected' event can be usefull for handling situations where the connection is lost.
+
+6. Export the Database Connection : Finally, you export the db object, which represents the MongoDB connection, so that you can import and use it in other parts of your Node.js application.
+
+    To sum it up, the db.js file acts as a central module that manages the connection to your MongoDB database using Mongoose. It sets up the connection, handles the connection events, and export the connection object so that your Express.js sever (or other parts of your application) can use it to interact with the database. When your server runs, it typically requires or imports this db.js file to establish the database connection before handling the HTTP requests.
+
+
+⭐ To start and stop MongoDB sever 
+    -> Open the git terminal as administrator . Git Bash (administrator) has full access (like modifying services, stopping MongoDB etc)
+    🔱 "net start MongoDB"
+    🔱 "net stop MongoDB"
+
+
+⭐ What are Models or schema ?
+1️⃣ Models are the like blueprint of our database
+2️⃣ It is a representation of specific collection in MongoDB Like a person
+3️⃣ Once you have defined a model, you can create, read, update and delete document in the corresponding MongoDB collection.
+4️⃣ Mongoose allows you to define a schema for your documents. A schema is like a blueprint that defines the structure and data types of your documents within a collection.
+
+
+⭐⭐⭐ 
+We create model from schema as we are doing in Person.js model and these models are used to create, read updata values 
+
+
+⭐ What is body-parser 
+    -> bodyParser is a middleware library for Express.js
+    -> It is used to parse and extract the body of incoming HTTP requests.
+    -> When a Client (e.g. a web browser or a mobile app) sends data to server, it typically includes that data in the body of an HTTP request.
+    -> This data can be in various formats, such as JSON, form data or URL-encoded data bodyParser helps parse and extract this data from the request so that you can work with it in your Express.js application.
+    -> bodyParser processess the request body before it reaches your route handlers, making the parsed data available in the req.body for further processing. 
+    
+    -> bodyParser.json() automatically parses the JSON data from the request.body and converts it into a JavaScript object, which is then stored in req.body.
+    
+⭐ How to use this middleware  [Express.js uses lots of middleware and to use middleware we use the app.use()]
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+    # for this we need to install body parser ✅"npm i body-parser"
+
+⭐ Send Data from Client to Server:
+We need an Endpoint where the client sends data needs to be saved in the database
+
+
+⭐ Saving in POST Method
+    -> Nowdays no one uses callback function like, we used in the POST methods. They look quite complex and also do not give us code readability.
+    -> What actually callback does, callback is a function that is Executed just after the Execution of another main function, it means the callback will wait until its main function is not Executed.
+
+⭐ Async and await 
+    -> they are the features in JavaScript that make it easier to work with asynchornous code such as network request file system operations, or database Queries.
+    -> Using try and catch block
+    -> The try and catch block
+    -> The try block Contains the code for creating a new Person document and saving it to the database using await newPerson.save()
+    -> If an error occurs during any step, it is caught in the catch block, and an error response is sent with a 500 internal Server Error status.
+
+
+⭐ CRUD application
+    -> create, read, update, Delete
+    -> These 4 operations are performed with the help of api 
+
+
+⭐ Important
+    C   ->      Create      ->  POST
+    R   ->      Read        ->  GET
+    U   ->      Update      ->  PUT/PATCH
+    D   ->      Delete      ->  DELETE
+
+
+ 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+<-- Lecture 6 -->
+⭐ Flow diagram 
+
+⭐ Parametrised API calls
+    -> Now if someone told you to give a list of people who are only waiters.
+    -> Then we can create an endpoint like this 
+        > /person/chef
+        > /person/waiter
+        > /person/manager
+    
+    -> But this is not the correct method to create as many functions here we can use Parametrised endpoints.
+    -> It can dynamically inserted into the URL when making a request to the API.
+
+⭐ Express Router
+    -> We have a lot of endpoints in a single file which is server.js 
+    -> This makes bad experience in code readability as well as code handling 
+    -> Express Router is a way to modularize and organize your route handling code in an Express js application 
+    -> So let's create a separate file to manage endpoints/person and /menu
+    -> Express router is like traffic cop for your web server.
+    -> Express router helps you organize and manage these pages or endpoints in your web application. It's like creating separate folders for different types of tasks.
+
+
+⭐ Update operations
+    -> we will update our person Record, for that we will create an endpoint from where we are able to updaste record.
+    -> For updation we need two things :
+        > Which Record we want to update ?
+        > What exactly we want to update ?
+    -> For update we will use PUT method to create a endpoint
+    -> What is a unique identifiers in a document in a collection ?
+    -> It's _id which is given by mongodb itself, we will use this to find the particular record which we want to update
+    -> And now we will send the data as same like we did in POST method.
+
+⭐  Delete operation
+    -> We will delete our person Record, for that wew will create an endpoint from where we are able to delete record.
+    -> For deletion we need one thing 
+        > Which Record w want to delete 
+    -> For delete we will use DELETE method to create a endpoint 
+    -> What is unique identifiers in a document in collection ?
+    -> Its _id which is given by mongodb itself, we will use this to find the particular record which we want to delete 
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+<-- Lecture 7 -->
+⭐ Git and Github
+    => Git is like a time machine for your code
+    => It is a tool that keep a record of every version of your code, so you can always go back to a previous state if something goes wrong.
+
+⭐ Host MongoDB database
+    -> Now we are running locally MongoDB database
+    -> All the data operation is performed in a local database so lets host our database sever and make our DB online presence
+
+    -> MongoDB Atlas provides a Free cluster for users where you can host your database for free.
+    -> MongoDB Atlas offers a cloud-based platform for hosting MongoDB database.
+    -> The free tier allows developers to explore and experiment with the database without incurring any costs.
+
+🔱 'npm install dotenv' file
+require('dotenv').config();
+This is done in server.js file
+
+⭐ Host NodeJS server
+    => Now we are going to host our server so that our Application or Endpoint is accessible to all the user over the internet.
+    => We are using localhost and our endpoints are only accessible within our computer.
+    => We have to make it publicly available so there are lots of company who helps us to make our application run 24*7 .
+    => like AWS, Google Cloud, etc. but these charge too much amount for our application.
+    => So we are going to use some free services to host our nodeJs application, which lots of company provides for developers purpose.
+    => Like Heroku, Netlify, Render etc
