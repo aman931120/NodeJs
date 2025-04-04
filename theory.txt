@@ -529,3 +529,110 @@ This is done in server.js file
     => like AWS, Google Cloud, etc. but these charge too much amount for our application.
     => So we are going to use some free services to host our nodeJs application, which lots of company provides for developers purpose.
     => Like Heroku, Netlify, Render etc
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+<-- Lecture 8 -->
+⭐ Middleware
+Imagine you are at a restraunt and you have placed an order for your favourite dish. Now, before that dish reaches your table, it goes through several stages in the kitchen. Each stage involves different tasks, like chopping vegetables, cooking and adding spices. Middleware is a bit like these stages in the kitchen it's something that happens in between your request and the final response in a web application.
+
+Now let us apply this idea in web Application 
+1️⃣ Request Phase :
+    You(the client) make a request to the Node Hotel system. It could be asking for the menu, submitting a reservation, or anything else.
+
+2️⃣ Middleware Phase :
+    Middleware is like the behind-the-scenes process in the kitchen. It is a series of functions that your request goes through before it reaches the final destination.
+
+3️⃣ Final response Phase:
+    After passing through the middleware, your request gets processed, and the system sends back a response. It could be the menu you requested or confirmation of your reservation.
+
+
+⭐ Middleware diagram 
+request --> Middleware --> Response
+
+⭐ logrequest 
+    In this example, logrequest is our middleware. It logs the time and requested URL for every incoming request. The app.use(logrequest) line tells Express to use this middleware for all routes.
+
+    So, when you access any route (like / or / menu) the middleware run first logs the request and then route-speicific code executes.
+
+⭐ Summary of Middleware :
+In summary, middleware is like a series of tasks that happens behind the scenes in a web application. It is a way to add extra  functionlaity to your application's request-response cycle, such as logging, authentication checs or modifying request data, before it reaches its final destination .
+✅Router is a third party middleware.
+
+
+⭐ Why do we use the next() function in the middleware function 
+In express.js the next() function is a callback that signal to express that the current middleware function has completed its processing and that it's time to move on to the next middleware function or route handler in the chain. 
+
+
+⭐ Authentication and Authorization
+1️⃣ Verifying Identity (Authentication)
+    Scenario : When a staff member, lets say a chef , want to log in to the Node Hotel system, they need to prove that they are indeed the chef they claim to be.
+    In Practise: In Nodejs authentication involves checking the chefs credentials like a username and password, to make sure they match what is on record. Its liek asking the chef to enter a secret code(password) and confirming that it's correct.
+
+2️⃣ Acces Control (Authorization)
+Now lets add a layer of Authorization based on the roles of the staff members.
+    Scenario: Once the chef has proven their Identity, you as the manager, want to control what they can and cannot do. For the instance, chef should be able to update the menu items, but maybe not manage stall salaries.
+    In Practise : In nodejs after authenticating the chef, you will use Authorization to decide what partf of the system they have access to . It's like giving the chef a key card(Authorization) that lets them into the kitchen but not into the manager office. 
+
+
+⭐ Implementation in Nodejs
+1️⃣  Authentication middleware:
+        -> In your nodejs application, you might use middleware like passport to handle the authentication process.
+        -> Passport helps verify the Identity of the chef based on their provided credentials.
+
+2️⃣  User Roles and Permission 
+        -> You will define roles for staff member(e.g. chef, waiter, manager)
+        -> Authorization middleware will check the role of the authenticated user and grant access accordingly 
+
+3️⃣  Secure Endpoint 
+        -> You will protect certain routes (like updating menu items) with authentication checks.
+        -> Only authenticated and authorized users like chefs will be allowed to access these routes.
+
+    
+⭐ passport.js
+It is a popular authentication middleware for Node.js. Authentication is the process of verifying the identity of the user, typically through a username and password before granting access to certain resources or features on a website or application. 
+    1. Middleware 
+    2. Stratergy
+    3. Serialize and Deserialize 
+
+
+🔱 'passport-local'
+🔱 'npm install passport passport-local'
+
+
+⭐ Passport Local Stratergy:
+    -> This Stratergy is a part of the Passport.js authentication middleware for Nodejs. It's specifically designed for handling username and password-based authentication.
+    -> The passport Local Stratergy, by default expects to extract the username and password from the request body. It is a common Practise for username and password-based authentication system to send the credentials as part of the request body especially login form.
+
+
+⭐ done function
+It takes three parameter : done(error, user, Info) 
+
+⭐ Storing plain password
+    -> Storing plain password is not a secure practise. To enhance security it is highly recommended to hash and salt password before storing them.
+    -> You can use the bcrypt library for password hashing in your Nodejs application. 
+
+⭐ compare function in bcrypt
+The compare function automatically extract the salt from storedHashed password and use it to hash the entered password. It then compares the resulting hash with the stored hash. If they match, it indicates that the entered password is correct.
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+<-- Lecture 9 -->
+GOAL : Sessions and Tokens
+Sessions are way to maintain user state and authenticate users in web applications.
+
+1. User authentication
+2. Maintaining user state
+3. security
+
+
+⭐ Sessions based authentication
+It is a way or small file, most likely in JSON format, that stores information about the user, such as a unique id, time of login expiration and so on. It is generated and stored on the server so that the server can keep track of the user request.
